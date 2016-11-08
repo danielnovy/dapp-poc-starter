@@ -1,7 +1,7 @@
 // ------------------------------------
 // Constants
 // ------------------------------------
-export const COUNTER_INCREMENT = 'COUNTER_INCREMENT'
+export const COUNTER_INCREMENT = 'COUNTER_INCREMENT1'
 
 // ------------------------------------
 // Actions
@@ -25,7 +25,7 @@ export const doubleAsync = () => {
   return (dispatch, getState) => {
     return new Promise((resolve) => {
       setTimeout(() => {
-        dispatch(increment(getState().counter))
+        dispatch(increment(getState().role1))
         resolve()
       }, 200)
     })

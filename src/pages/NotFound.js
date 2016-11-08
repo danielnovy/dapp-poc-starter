@@ -7,4 +7,7 @@ export const NotFound = () => (
   </div>
 )
 
-export default NotFound
+export default {
+  path: '/notFound',
+  component: NotFound
+}

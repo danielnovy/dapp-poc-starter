@@ -1,7 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import createStore from './store/createStore'
-import AppContainer from './containers/AppContainer'
+import App from './App'
 
 // ========================================================
 // Store Instantiation
@@ -15,10 +15,10 @@ const store = createStore(initialState)
 const MOUNT_NODE = document.getElementById('root')
 
 let render = () => {
-  const routes = require('./routes/index').default(store)
+  const routes = require('./routes').default(store)
 
   ReactDOM.render(
-    <AppContainer store={store} routes={routes} />,
+    <App store={store} routes={routes} />,
     MOUNT_NODE
   )
 }
@@ -55,7 +55,7 @@ if (__DEV__) {
     }
 
     // Setup hot module replacement
-    module.hot.accept('./routes/index', () =>
+    module.hot.accept('./routes', () =>
       setImmediate(() => {
         ReactDOM.unmountComponentAtNode(MOUNT_NODE)
         render()

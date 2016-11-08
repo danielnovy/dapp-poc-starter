@@ -1,7 +1,13 @@
-import { injectReducer } from '../../store/reducers'
+import { injectReducer } from '../../../store/reducers'
+import { browserHistory } from 'react-router'
 
 export default (store) => ({
-  path : 'counter',
+  path : 'logged/role0',
+  onEnter: () => {
+    if (!store.getState().auth.wallet) {
+      browserHistory.push('/denied');
+    }
+  },
   /*  Async getComponent is only invoked when route matches   */
   getComponent (nextState, cb) {
     /*  Webpack - use 'require.ensure' to create a split point
@@ -9,16 +15,16 @@ export default (store) => ({
     require.ensure([], (require) => {
       /*  Webpack - use require callback to define
           dependencies for bundling   */
-      const Counter = require('./containers/CounterContainer').default
-      const reducer = require('./modules/counter').default
+      const LoggedInRole0 = require('./LoggedInRole0').default
+      const reducer = require('../../modules/role0').default
 
       /*  Add the reducer to the store on key 'counter'  */
-      injectReducer(store, { key: 'counter', reducer })
+      injectReducer(store, { key: 'role0', reducer })
 
       /*  Return getComponent   */
-      cb(null, Counter)
+      cb(null, LoggedInRole0)
 
     /* Webpack named bundle   */
-    }, 'counter')
+    }, 'role0')
   }
 })
