@@ -8,6 +8,6 @@ export const NotFound = () => (
 )
 
 export default {
-  path: '/notFound',
+  path: '*',
   component: NotFound
 }

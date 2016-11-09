@@ -3,6 +3,7 @@ import Home from './pages/Home'
 import NotFound from './pages/NotFound'
 import Simple from './pages/Simple'
 import Denied from './pages/Denied'
+import InvalidWallet from './pages/InvalidWallet'
 import LoggedInRole0 from './pages/containers/LoggedInRole0'
 import LoggedInRole1 from './pages/containers/LoggedInRole1'
 
@@ -13,6 +14,7 @@ export const createRoutes = (store) => ({
   childRoutes : [
     Simple,
     Denied,
+    InvalidWallet,
     LoggedInRole0(store),
     LoggedInRole1(store),
     NotFound,

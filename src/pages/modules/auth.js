@@ -11,26 +11,47 @@ export function logout () {
   }
 }
 
+const getUserInfo = (address, wallet) => {
+  return new Promise((resolve, reject) => {
+    resolve({address, wallet});
+  });
+}
+
 // ------------------------------------
 // Async Action
 // ------------------------------------
 export const login = (evt) => {
   return (dispatch, getState) => {
-    return new Promise((resolve) => {
+    return new Promise((resolve, reject) => {
       var reader = new FileReader();
       reader.onload = function() {
-        let wallet = JSON.parse(reader.result);
-        let address = wallet.ksData["m/0'/0'/0'"].addresses[0];
-        console.log('address=' + address);
-        dispatch({type: LOGIN, payload: {wallet, address}})
-        resolve()
-      };  
+        try {
+          let wallet = JSON.parse(reader.result);
+          let address = wallet.ksData["m/0'/0'/0'"].addresses[0];
+          resolve({address, wallet})
+        } catch (Err) {
+          reject();
+        }
+      };
       reader.readAsText(evt.target.files[0]);
       evt.target.value = ''; 
-    }).then(() => {
-      console.log('testando');
-      browserHistory.push('/logged/role0');
-    })
+    }).then((data) => {
+      return getUserInfo(data.address, data.wallet);
+    }).then((data) => {
+        dispatch({
+          type: LOGIN, 
+          payload: {
+            wallet: data.wallet, 
+            address: data.address,
+            name: data.name,
+            role: data.role,
+            photoUrl: data.photoUrl
+          }
+        })
+        browserHistory.push('/logged/role0');
+    }).catch(() => {
+        browserHistory.push('/invalidWallet');
+    });
   }
 }
 

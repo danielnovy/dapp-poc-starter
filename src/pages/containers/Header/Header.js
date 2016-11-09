@@ -39,8 +39,11 @@ const Header = (props) => (
 
 const mapStateToProps = (state) => {
   return {
-    address : state.auth.address,
-    wallet : state.auth.wallet
+    wallet: state.auth.wallet,
+    address: state.auth.address,
+    name: state.auth.name,
+    role: state.auth.role,
+    photoUrl: state.auth.photoUrl
   };
 }
 
