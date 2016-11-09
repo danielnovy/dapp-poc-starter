@@ -110,6 +110,7 @@
     "style-loader": "^0.13.1",
     "url-loader": "^0.5.6",
     "web3": "^0.17.0-beta",
+    "web3-provider-engine": "^8.1.7",
     "webpack": "^1.12.14",
     "yargs": "^6.3.0"
   },

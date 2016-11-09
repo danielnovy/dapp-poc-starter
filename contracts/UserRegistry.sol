@@ -3,8 +3,8 @@ pragma solidity ^0.4.0;
 contract UserRegistry {
 
   struct User {
-    uint8 role;
     string name;
+    uint8 role;
     string photoUrl;
   }
 

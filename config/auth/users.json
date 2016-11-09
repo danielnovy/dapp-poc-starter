@@ -2,16 +2,16 @@
   {
     "name": "Daniel Novy",
     "role": 0,
-    "photoUrl": "/static/user0.png"
+    "photoUrl": "/img/novy.png"
   },
   {
     "name": "Igor Lilic",
     "role": 0,
-    "photoUrl": ""
+    "photoUrl": "/img/igor.png"
   },
   {
-    "name": "Eva Shon",
+    "name": "Joseph Lubin",
     "role": 1,
-    "photoUrl": ""
+    "photoUrl": "/img/joe.png"
   }
 ]

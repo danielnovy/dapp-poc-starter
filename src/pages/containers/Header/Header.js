@@ -3,10 +3,13 @@ import { IndexLink, Link, browserHistory } from 'react-router'
 import { connect } from 'react-redux'
 import { login as loginAction , logout as logoutAction} from '../../modules/auth'
 
+import './Header.scss'
+
 let input = null
 
 const Header = (props) => (
     <div>
+    <div className='header header-menu'>
       <input 
         type='file' 
         style={{display: 'none'}}
@@ -23,24 +26,51 @@ const Header = (props) => (
         Simple
       </Link>
 
-      {console.log('addr: ' + props.address)}
       {props.wallet ? 
-        <span>
-          {' . '}<Link onClick={props.logout} activeClassName='route--active'>Logout</Link>
-          {' '}Logged with {props.address}
+        <span>{' . '}
+        <Link to='/logged/item' activeClassName='route--active'>
+          LoggedPage
+        </Link>
         </span>
+        :null}
+
+    </div>
+    <div className='header header-login'>
+      {!props.wallet ? 
+        <div className='header-not-logged'>
+          <Link onClick={()=>input.click()} activeClassName='route--active'>Login</Link>
+        </div>
         :
-        <span>
-          {' . '}<Link onClick={()=>input.click()} activeClassName='route--active'>Login</Link>
-        </span>
+        <div className='header-logged'>
+          <table className='logged-table'><tbody>
+            <tr>
+              <td>{props.name}</td>
+              <td rowSpan='3'><img className='photo' src={props.photoUrl}/></td>
+            </tr>
+            <tr>
+              <td>{props.address}</td>
+            </tr>
+            <tr>
+              <td><Link onClick={props.logout} activeClassName='route--active'>Logout</Link></td>
+            </tr>
+          </tbody></table>
+        </div>
       }
     </div>
+    </div>
 )
+
+const transformAddress = (address) => {
+  if (!address) return null;
+  let pre = address.substring(0,10);
+  let pos = address.substring(address.length - 5);
+  return pre + '...' + pos;
+}
 
 const mapStateToProps = (state) => {
   return {
     wallet: state.auth.wallet,
-    address: state.auth.address,
+    address: transformAddress(state.auth.address),
     name: state.auth.name,
     role: state.auth.role,
     photoUrl: state.auth.photoUrl

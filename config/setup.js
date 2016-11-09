@@ -3,11 +3,11 @@ var Web3    = require('web3');
 var solc    = require('solc');
 var fs      = require('fs');
 var lw      = require('eth-lightwallet');
-var users   = require('./users.json');
+var users   = require('./auth/users.json');
 
 var CONTRACT_FILE = 'contracts/UserRegistry.sol';
 var CONTRACT_NAME = 'UserRegistry';
-var RESULT_FILE = 'config/UserRegistry.js';
+var RESULT_FILE = 'config/auth/UserRegistry.js';
 var WALLET_PASSWORD = 'test';
 
 var deriveKey   = Promise.promisify(lw.keystore.deriveKeyFromPassword);
@@ -101,7 +101,7 @@ readfs(CONTRACT_FILE, 'utf8')
     console.log('Wallets funded.');
     console.log('=====================================================');
     console.log('Adding users to registry...');
-    var meta = require('./UserRegistry.js');
+    var meta = require('./auth/UserRegistry.js');
     contract = web3.eth.contract(JSON.parse(meta.abi)).at(meta.address);
     var ps = [];
     for (var i = 0; i < users.length; i++) {
@@ -120,7 +120,7 @@ readfs(CONTRACT_FILE, 'utf8')
   return Promise.promisify(contract.users)('0x'+addresses[0]);
 })
 .then(function(data) {
-  console.log(JSON.stringify(data));
+  //console.log(JSON.stringify(data));
 })
 .catch(function(err) {
     console.log(err);

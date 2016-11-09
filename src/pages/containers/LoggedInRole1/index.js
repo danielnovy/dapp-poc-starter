@@ -22,7 +22,7 @@ export default (store) => ({
       injectReducer(store, { key: 'role1', reducer })
 
       /*  Return getComponent   */
-      cb(null, LoggedInRole0)
+      cb(null, LoggedInRole1)
 
     /* Webpack named bundle   */
     }, 'role1')
