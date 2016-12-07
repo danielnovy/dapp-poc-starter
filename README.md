@@ -12,28 +12,46 @@ info. Besides storing users and roles, it also stores user names and an url
 
 In future versions, this boilerplate can be integrated with uPort.
 
-This project is based on the 
-[react-redux-starter-kit](https://github.com/davezuko/react-redux-starter-kit)
+This project is based on the [react-redux-starter-kit](https://github.com/davezuko/react-redux-starter-kit)
 but with a much simpler folder structure.
 
-# Building
+# Initial setup 
 
+**Install testrpc** 
+
+In order to run this project, you will need to have 
+[testrpc](https?//github.com/ethereumjs/testrpc) installed on your system. 
+
+Start testrpc and keep it running 
+```
+testrpc
+```
+
+**Building**
 ```
 npm install
 ```
 
+**Deploy Contracts**
+
+Run the setup script
+
+```
+node config/setup.js
+```
+
 # Running
-This project is shipped with webpack hot-reloading feature. For running on
-development mode, run:
+This project is shipped with webpack hot-reloading feature. 
+To start the webpack server run:
 ```
 npm run dev
 ```
-See other running modes in file `package.json`.
+
+Visit your browser at http://localhost:3000
+
 
 # How it works
 
-to be written
-
-# Adapting to your PoC
+You can login to the app using the wallets files in the _/wallets_ folder.
 
 
