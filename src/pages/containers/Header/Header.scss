@@ -1,48 +1,29 @@
 .header {
-  font-size: 17px;
-  margin-top: 10px;
-  height: 75px;
-  background-color: #eee;
+  display: flex;
+  flex-direction: column;
 }
-
-.header-menu {
-  padding: 25px;
-  float: left;
-  width: 70%;
+.header--title {
+  padding: 40px 40px 1em;
+  font-size: large;
 }
+.header--user {
+  padding: 0 40px 2em;
 
-.header-login {
-  width: 30%;
-  float: right;
-  text-align: right;
-}
+  .header--user--picture {
+    width: 48px;
+    height: 48px;
+    border-radius: 24px;
+    margin-bottom: 5px;
+  }
 
-.header-not-logged {
-  padding: 25px;
-}
+  .header--user-name {
+    font-size: small;
+  }
 
-.header-not-logged a {
-  padding: 5px;
-}
-
-.header-not-logged a:hover {
-  background-color: #fff;
-  text-decoration: none;
-  padding: 5px;
-}
-
-.header-logged {
-  font-size:16px;
-  padding: 5px;
-}
-
-.photo {
-  width: 65px;
-  height: 65px;
-  border-radius: 30%;
-  margin-left: 1px;
-}
-
-.logged-table {
-  width: 95%;
+  .header--user-addrsss {
+    max-width: 100%;
+    font-size: x-small;
+    text-overflow: ellipsis;
+    overflow: hidden
+  }
 }

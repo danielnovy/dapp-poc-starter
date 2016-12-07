@@ -8,69 +8,68 @@ import './Header.scss'
 let input = null
 
 const Header = (props) => (
-    <div>
-    <div className='header header-menu'>
-      <input 
-        type='file' 
-        style={{display: 'none'}}
-        ref={i=>input=i} 
-        onChange={props.login}
-      />
 
-      <IndexLink to='/' activeClassName='route--active'>
+  <div className="header mdl-layout__drawer mdl-color--primary mdl-color-text--white">
+
+    <div className="header--title mdl-color--primary-dark">
+      dapp-poc-starter
+    </div>
+
+    {props.wallet ?
+      <div className='header--user mdl-color--primary-dark'>
+        <img className='header--user--picture' src={props.photoUrl}/>
+        <div className="header--user-name">
+          {props.name}
+        </div>
+        <div className="header--user-addrsss">
+          {props.address}
+        </div>
+
+      </div>
+     :null
+    }
+
+    <nav className="header--nav mdl-navigation mdl-color-text--white">
+
+      <IndexLink className="mdl-navigation__link mdl-color-text--primary-contrast" to='/' activeClassName='route--active'>
         Home
       </IndexLink>
 
-      {' · '}
-      <Link to='/simple' activeClassName='route--active'>
+      <Link className="mdl-navigation__link mdl-color-text--primary-contrast" to='/simple' activeClassName='route--active'>
         Simple
       </Link>
 
-      {props.wallet ? 
-        <span>{' . '}
-        <Link to='/logged/item' activeClassName='route--active'>
-          LoggedPage
-        </Link>
-        </span>
-        :null}
-
-    </div>
-    <div className='header header-login'>
-      {!props.wallet ? 
-        <div className='header-not-logged'>
-          <Link onClick={()=>input.click()} activeClassName='route--active'>Login</Link>
+      {!props.wallet ?
+        <div>
+          <input
+              type='file'
+              style={{display: 'none'}}
+              ref={i=>input=i}
+              onChange={props.login}
+          />
+          <Link className="mdl-navigation__link mdl-color-text--primary-contrast" onClick={()=>input.click()} activeClassName='route--active'>
+            Login
+          </Link>
         </div>
         :
-        <div className='header-logged'>
-          <table className='logged-table'><tbody>
-            <tr>
-              <td>{props.name}</td>
-              <td rowSpan='3'><img className='photo' src={props.photoUrl}/></td>
-            </tr>
-            <tr>
-              <td>{props.address}</td>
-            </tr>
-            <tr>
-              <td><Link onClick={props.logout} activeClassName='route--active'>Logout</Link></td>
-            </tr>
-          </tbody></table>
+        <div>
+          <Link className="mdl-navigation__link mdl-color-text--primary-contrast" to='/logged/item' activeClassName='route--active'>
+            Private Page
+          </Link>
+          <Link className="mdl-navigation__link mdl-color-text--primary-contrast" onClick={props.logout} activeClassName='route--active'>Logout</Link>
         </div>
       }
-    </div>
-    </div>
+    </nav>
+
+  </div>
+
 )
 
-const transformAddress = (address) => {
-  if (!address) return null;
-  let pre = address.substring(0,10);
-  let pos = address.substring(address.length - 5);
-  return pre + '...' + pos;
-}
 
 const mapStateToProps = (state) => {
   return {
     wallet: state.auth.wallet,
-    address: transformAddress(state.auth.address),
+    address: state.auth.address,
     name: state.auth.name,
     role: state.auth.role,
     photoUrl: state.auth.photoUrl

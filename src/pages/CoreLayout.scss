@@ -1,7 +1,17 @@
-.core-layout__viewport {
-  padding-top: 20px;
-  text-align: center;
-  padding-left: 0px;
+html, body {
+  font-family: 'Roboto', 'Helvetica', sans-serif;
+}
+
+.material-icons {
+  vertical-align: middle;
+}
+
+.core-layout--main,
+.core-layout--nav {
+  //clear: both;
+  //max-width: 900px;
+  //margin: 0 auto;
+  //border: 1px solid red;
 }
 a {
   cursor: pointer;
