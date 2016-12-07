@@ -1,1 +1,1 @@
-iiii
+This is a testfile to provide a invalid wallet.
